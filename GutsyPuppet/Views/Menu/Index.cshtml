@@ -1,0 +1,31 @@
+﻿@model GutsyPuppet.Models.MenuViewModel
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            @Html.ActionLink("Gutsy Puppet", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Views<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="viewLink" data-viewId="1">Tasks</a></li>
+                        <li><a class="viewLink" data-viewId="2">Worklogs</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Teams<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        @foreach (var team in Model.Teams)
+                        {
+                            <li><a class="teamLink" data-teamId="@team.Id">@team.Name</a></li>
+                        }
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

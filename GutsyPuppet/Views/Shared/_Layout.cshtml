@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>@ViewBag.Title - Gutsy Puppet</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</head>
+<body>
+    @{ Html.RenderAction("Index", "Menu"); }
+<div class="container body-content">
+    @RenderBody()
+</div>
+
+<script type="text/javascript">
+    var currentSelections = {
+        teamId: 0,
+        viewId: 0
+    };
+    var TASK_VIEW_ID = 1;
+    var WORKLOG_VIEW_ID = 2;
+
+    $(document).ready(function () {
+        var teamLinks = $(".teamLink");
+        for (var i = 0; i < teamLinks.length; i++) {
+            var teamLink = teamLinks[i];
+            teamLink.onclick = function () {
+                var newTeamId =  $(this).attr("data-teamId");
+                if (newTeamId !== currentSelections.teamId) {
+                    currentSelections.teamId = parseInt(newTeamId);
+                    reloadView();
+                }
+            };
+        }
+
+        var viewLinks = $(".viewLink");
+        for (var j = 0; j < viewLinks.length; j++) {
+            var viewLink = viewLinks[j];
+            viewLink.onclick = function () {
+                var newViewId = $(this).attr("data-viewId");
+                if (newViewId !== currentSelections.viewId) {
+                    currentSelections.viewId = parseInt(newViewId);
+                    reloadView();
+                }
+            };
+        }
+    });
+
+    function reloadView() {
+        console.log("Test reload view");
+        console.log(currentSelections.teamId);
+
+        if (currentSelections.teamId === 0 || currentSelections.viewId === 0) return;
+
+        debugger;
+        switch (currentSelections.viewId) {
+            case TASK_VIEW_ID:
+
+                break;
+            case WORKLOG_VIEW_ID:
+                var url = "@Url.Action("Index", "Worklogs", new {teamid="myTeamId"})".replace("myTeamId", currentSelections.teamId);
+                $.get(url, function (data) {
+                    debugger;
+                    $(".body-content").html(data);
+                });
+                break;
+            default:
+        }
+    }
+</script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

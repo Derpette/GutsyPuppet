@@ -1,0 +1,713 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GutsyPuppetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AuthUserLogins">
+          <Key>
+            <PropertyRef Name="AuthUserLoginId" />
+          </Key>
+          <Property Name="AuthUserLoginId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ClientType" Type="int" Nullable="false" />
+          <Property Name="LoginDateTime" Type="datetime" Nullable="false" />
+          <Property Name="LoginId" Type="nvarchar" MaxLength="100" />
+          <Property Name="LoginResult" Type="int" Nullable="false" />
+          <Property Name="AdditionalInfo" Type="nvarchar(max)" />
+          <Property Name="UserType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AuthUsers">
+          <Key>
+            <PropertyRef Name="AuthUserId" />
+          </Key>
+          <Property Name="AuthUserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="UserType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AuthUserSettings">
+          <Key>
+            <PropertyRef Name="AuthUserId" />
+            <PropertyRef Name="ClientId" />
+          </Key>
+          <Property Name="AuthUserId" Type="int" Nullable="false" />
+          <Property Name="ClientId" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="AuthUserSettingsJson" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="OnTimeItems">
+          <Key>
+            <PropertyRef Name="OnTimeItemId" />
+          </Key>
+          <Property Name="OnTimeItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="CreatedById" Type="int" Nullable="false" />
+          <Property Name="ReportedById" Type="int" Nullable="false" />
+          <Property Name="AssignedToId" Type="int" Nullable="false" />
+          <Property Name="PriorityTypeId" Type="int" Nullable="false" />
+          <Property Name="StatusTypeId" Type="int" Nullable="false" />
+          <Property Name="SeverityTypeId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="BuildNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="EstimatedDuration" Type="real" Nullable="false" />
+          <Property Name="DurationUnitTypeId" Type="int" Nullable="false" />
+          <Property Name="ActualDuration" Type="real" Nullable="false" />
+          <Property Name="ActualUnitTypeId" Type="int" Nullable="false" />
+          <Property Name="ReportedDate" Type="date" />
+          <Property Name="CompletionDate" Type="date" Nullable="false" />
+          <Property Name="DueDate" Type="date" Nullable="false" />
+          <Property Name="BuildNumberOfFix" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReplicationProcedures" Type="nvarchar(max)" />
+          <Property Name="Resolution" Type="nvarchar(max)" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="LastUpdated" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="WorkflowStepId" Type="int" Nullable="false" />
+          <Property Name="PercentComplete" Type="tinyint" Nullable="false" />
+          <Property Name="LastUpdatedById" Type="int" Nullable="false" />
+          <Property Name="LastUpdatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="PubliclyViewable" Type="bit" Nullable="false" />
+          <Property Name="ReportedByCustomerContactId" Type="int" Nullable="false" />
+          <Property Name="Archived" Type="bit" Nullable="false" />
+          <Property Name="RemainingDuration" Type="real" Nullable="false" />
+          <Property Name="RemainingUnitTypeId" Type="int" Nullable="false" />
+          <Property Name="ReleaseId" Type="int" Nullable="false" />
+          <Property Name="ParentId" Type="int" Nullable="false" />
+          <Property Name="SubitemType" Type="int" Nullable="false" />
+          <Property Name="AggregateEstimatedMinutes" Type="real" Nullable="false" />
+          <Property Name="AggregateActualMinutes" Type="real" Nullable="false" />
+          <Property Name="AggregateRemainingMinutes" Type="real" Nullable="false" />
+          <Property Name="EstimatedDurationMinutes" Type="real" Nullable="false" />
+          <Property Name="ActualDurationMinutes" Type="real" Nullable="false" />
+          <Property Name="RemainingDurationMinutes" Type="real" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="ItemNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ItemType" Type="int" Nullable="false" />
+          <Property Name="CategoryTypeId" Type="int" />
+          <Property Name="EscalationLevelId" Type="int" />
+          <Property Name="IsCompleted" Type="bit" />
+          <Property Name="IsPublic" Type="bit" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="FamilyId" Type="int" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="UniqueId" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="UniqueFamilyId" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="UniqueParentId" Type="int" StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedByEmailAddress" Type="nvarchar" MaxLength="200" />
+          <Property Name="AssignedToType" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6005: The data type 'hierarchyid' is currently not supported for the target Entity Framework version; the column 'TeamNode' in the table 'Ontime.dbo.Teams' was excluded.
+warning 6031: The column 'TeamNode' on the table/view 'Ontime.dbo.Teams' was excluded, and is a key column.  The table/view has been excluded.  Please fix the entity in the schema file, and uncomment.
+        <EntityType Name="Teams">
+          <Property Name="TeamLevel" Type="smallint" StoreGeneratedPattern="Computed" />
+          <Property Name="TeamId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ParentId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastUpdated" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>-->
+        <EntityType Name="TeamUsers">
+          <Key>
+            <PropertyRef Name="TeamUserId" />
+          </Key>
+          <Property Name="TeamUserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TeamId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TimeUnitTypes">
+          <Key>
+            <PropertyRef Name="TimeUnitTypeId" />
+          </Key>
+          <Property Name="TimeUnitTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Abbreviation" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DisplayOrder" Type="int" Nullable="false" />
+          <Property Name="ConversionFactor" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LoginId" Type="nvarchar" MaxLength="100" />
+          <Property Name="Password" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="WindowsId" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="UseWindowsAuth" Type="bit" Nullable="false" />
+          <Property Name="BuiltInAccount" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="LastLoginDateTime" Type="datetime" />
+          <Property Name="ReadMessages" Type="image" />
+          <Property Name="NewSettingsXml" Type="xml" />
+          <Property Name="IsLocked" Type="bit" Nullable="false" />
+          <Property Name="FailedLogins" Type="int" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="HashData" Type="nvarchar" MaxLength="150" />
+          <Property Name="UserImage" Type="image" />
+          <Property Name="UseGravatar" Type="bit" Nullable="false" />
+          <Property Name="EmailSignature" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CultureInfo" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastUpdatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="HasImage" Type="bit" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserSecurityRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="SecurityRoleId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="SecurityRoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserTokens">
+          <Key>
+            <PropertyRef Name="UserTokenId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="OAuthToken" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="RefreshToken" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="UserType" Type="int" Nullable="false" />
+          <Property Name="Scope" Type="nvarchar" MaxLength="100" />
+          <Property Name="RedirectUri" Type="nvarchar" MaxLength="2048" />
+          <Property Name="AuthorizationCode" Type="nvarchar" MaxLength="255" />
+          <Property Name="ClientId" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserTokenId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExpirationDateTime" Type="datetime" />
+          <Property Name="Provider" Type="int" Nullable="false" />
+          <Property Name="OAuthSecret" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="WorkflowSteps">
+          <Key>
+            <PropertyRef Name="WorkflowStepId" />
+          </Key>
+          <Property Name="WorkflowStepId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WorkflowId" Type="int" Nullable="false" />
+          <Property Name="StepOrder" Type="int" Nullable="false" />
+          <Property Name="StepName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="EditFieldTemplateId" Type="int" Nullable="false" />
+          <Property Name="RequireEdit" Type="bit" Nullable="false" />
+          <Property Name="ArchiveItem" Type="bit" Nullable="false" />
+          <Property Name="SuppressNotifications" Type="bit" Nullable="false" />
+          <Property Name="UpdateTimeEstimate" Type="bit" Nullable="false" />
+          <Property Name="PromptWorkLogEntry" Type="bit" Nullable="false" />
+          <Property Name="RequireWorkLogEntry" Type="bit" Nullable="false" />
+          <Property Name="NewEmailWorkflowStepId" Type="int" Nullable="false" />
+          <Property Name="DefaultColor" Type="int" />
+          <Property Name="UnarchiveItem" Type="bit" Nullable="false" />
+          <Property Name="SourceControlCommitWorkflowStepId" Type="int" Nullable="false" />
+          <Property Name="Rules" Type="xml" />
+          <Property Name="EnableWIPLimits" Type="bit" Nullable="false" />
+          <Property Name="WIPItemsPerStep" Type="int" Nullable="false" />
+          <Property Name="EnforceWIPLimits" Type="bit" Nullable="false" />
+          <Property Name="EnableWIPLimitsPerUser" Type="bit" Nullable="false" />
+          <Property Name="EnforceWIPLimitsPerUser" Type="bit" Nullable="false" />
+          <Property Name="WIPItemsPerUser" Type="int" Nullable="false" />
+          <Property Name="ItemCopyItemType" Type="int" />
+          <Property Name="CustomIntegrationId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkLog">
+          <Key>
+            <PropertyRef Name="WorkLogId" />
+          </Key>
+          <Property Name="WorkLogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WorkLogDateTime" Type="datetime" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="ItemTypeId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="WorkDone" Type="real" Nullable="false" />
+          <Property Name="WorkUnitTypeId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="WorkLogTypeId" Type="int" Nullable="false" />
+          <Property Name="SourceType" Type="int" Nullable="false" />
+          <Property Name="SourceId" Type="int" Nullable="false" />
+          <Property Name="ReleaseWorkEntryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="GutsyPuppetModelStoreContainer">
+          <EntitySet Name="AuthUserLogins" EntityType="Self.AuthUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AuthUsers" EntityType="Self.AuthUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AuthUserSettings" EntityType="Self.AuthUserSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OnTimeItems" EntityType="Self.OnTimeItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeamUsers" EntityType="Self.TeamUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TimeUnitTypes" EntityType="Self.TimeUnitTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserSecurityRoles" EntityType="Self.UserSecurityRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTokens" EntityType="Self.UserTokens" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkflowSteps" EntityType="Self.WorkflowSteps" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkLog" EntityType="Self.WorkLog" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GutsyPuppetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AuthUserLogin">
+          <Key>
+            <PropertyRef Name="AuthUserLoginId" />
+          </Key>
+          <Property Name="AuthUserLoginId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ClientType" Type="Int32" Nullable="false" />
+          <Property Name="LoginDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LoginId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LoginResult" Type="Int32" Nullable="false" />
+          <Property Name="AdditionalInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserType" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AuthUser">
+          <Key>
+            <PropertyRef Name="AuthUserId" />
+          </Key>
+          <Property Name="AuthUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserType" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AuthUserSetting">
+          <Key>
+            <PropertyRef Name="AuthUserId" />
+            <PropertyRef Name="ClientId" />
+          </Key>
+          <Property Name="AuthUserId" Type="Int32" Nullable="false" />
+          <Property Name="ClientId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AuthUserSettingsJson" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OnTimeItem">
+          <Key>
+            <PropertyRef Name="OnTimeItemId" />
+          </Key>
+          <Property Name="OnTimeItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedById" Type="Int32" Nullable="false" />
+          <Property Name="ReportedById" Type="Int32" Nullable="false" />
+          <Property Name="AssignedToId" Type="Int32" Nullable="false" />
+          <Property Name="PriorityTypeId" Type="Int32" Nullable="false" />
+          <Property Name="StatusTypeId" Type="Int32" Nullable="false" />
+          <Property Name="SeverityTypeId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BuildNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EstimatedDuration" Type="Single" Nullable="false" />
+          <Property Name="DurationUnitTypeId" Type="Int32" Nullable="false" />
+          <Property Name="ActualDuration" Type="Single" Nullable="false" />
+          <Property Name="ActualUnitTypeId" Type="Int32" Nullable="false" />
+          <Property Name="ReportedDate" Type="DateTime" Precision="0" />
+          <Property Name="CompletionDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DueDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BuildNumberOfFix" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReplicationProcedures" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Resolution" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdated" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="WorkflowStepId" Type="Int32" Nullable="false" />
+          <Property Name="PercentComplete" Type="Byte" Nullable="false" />
+          <Property Name="LastUpdatedById" Type="Int32" Nullable="false" />
+          <Property Name="LastUpdatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PubliclyViewable" Type="Boolean" Nullable="false" />
+          <Property Name="ReportedByCustomerContactId" Type="Int32" Nullable="false" />
+          <Property Name="Archived" Type="Boolean" Nullable="false" />
+          <Property Name="RemainingDuration" Type="Single" Nullable="false" />
+          <Property Name="RemainingUnitTypeId" Type="Int32" Nullable="false" />
+          <Property Name="ReleaseId" Type="Int32" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" Nullable="false" />
+          <Property Name="SubitemType" Type="Int32" Nullable="false" />
+          <Property Name="AggregateEstimatedMinutes" Type="Single" Nullable="false" />
+          <Property Name="AggregateActualMinutes" Type="Single" Nullable="false" />
+          <Property Name="AggregateRemainingMinutes" Type="Single" Nullable="false" />
+          <Property Name="EstimatedDurationMinutes" Type="Single" Nullable="false" />
+          <Property Name="ActualDurationMinutes" Type="Single" Nullable="false" />
+          <Property Name="RemainingDurationMinutes" Type="Single" Nullable="false" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="ItemNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ItemType" Type="Int32" Nullable="false" />
+          <Property Name="CategoryTypeId" Type="Int32" />
+          <Property Name="EscalationLevelId" Type="Int32" />
+          <Property Name="IsCompleted" Type="Boolean" />
+          <Property Name="IsPublic" Type="Boolean" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="FamilyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="UniqueId" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="UniqueFamilyId" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="UniqueParentId" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CreatedByEmailAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="AssignedToType" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeamUser">
+          <Key>
+            <PropertyRef Name="TeamUserId" />
+          </Key>
+          <Property Name="TeamUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeamId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TimeUnitType">
+          <Key>
+            <PropertyRef Name="TimeUnitTypeId" />
+          </Key>
+          <Property Name="TimeUnitTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Abbreviation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+          <Property Name="ConversionFactor" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LoginId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WindowsId" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UseWindowsAuth" Type="Boolean" Nullable="false" />
+          <Property Name="BuiltInAccount" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="LastLoginDateTime" Type="DateTime" Precision="3" />
+          <Property Name="ReadMessages" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="NewSettingsXml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsLocked" Type="Boolean" Nullable="false" />
+          <Property Name="FailedLogins" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HashData" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="UserImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="UseGravatar" Type="Boolean" Nullable="false" />
+          <Property Name="EmailSignature" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CultureInfo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastUpdatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="HasImage" Type="Boolean" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="UserSecurityRole">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="SecurityRoleId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="SecurityRoleId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserToken">
+          <Key>
+            <PropertyRef Name="UserTokenId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="OAuthToken" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RefreshToken" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserType" Type="Int32" Nullable="false" />
+          <Property Name="Scope" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RedirectUri" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" />
+          <Property Name="AuthorizationCode" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ClientId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserTokenId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExpirationDateTime" Type="DateTime" Precision="3" />
+          <Property Name="Provider" Type="Int32" Nullable="false" />
+          <Property Name="OAuthSecret" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="WorkflowStep">
+          <Key>
+            <PropertyRef Name="WorkflowStepId" />
+          </Key>
+          <Property Name="WorkflowStepId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WorkflowId" Type="Int32" Nullable="false" />
+          <Property Name="StepOrder" Type="Int32" Nullable="false" />
+          <Property Name="StepName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EditFieldTemplateId" Type="Int32" Nullable="false" />
+          <Property Name="RequireEdit" Type="Boolean" Nullable="false" />
+          <Property Name="ArchiveItem" Type="Boolean" Nullable="false" />
+          <Property Name="SuppressNotifications" Type="Boolean" Nullable="false" />
+          <Property Name="UpdateTimeEstimate" Type="Boolean" Nullable="false" />
+          <Property Name="PromptWorkLogEntry" Type="Boolean" Nullable="false" />
+          <Property Name="RequireWorkLogEntry" Type="Boolean" Nullable="false" />
+          <Property Name="NewEmailWorkflowStepId" Type="Int32" Nullable="false" />
+          <Property Name="DefaultColor" Type="Int32" />
+          <Property Name="UnarchiveItem" Type="Boolean" Nullable="false" />
+          <Property Name="SourceControlCommitWorkflowStepId" Type="Int32" Nullable="false" />
+          <Property Name="Rules" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EnableWIPLimits" Type="Boolean" Nullable="false" />
+          <Property Name="WIPItemsPerStep" Type="Int32" Nullable="false" />
+          <Property Name="EnforceWIPLimits" Type="Boolean" Nullable="false" />
+          <Property Name="EnableWIPLimitsPerUser" Type="Boolean" Nullable="false" />
+          <Property Name="EnforceWIPLimitsPerUser" Type="Boolean" Nullable="false" />
+          <Property Name="WIPItemsPerUser" Type="Int32" Nullable="false" />
+          <Property Name="ItemCopyItemType" Type="Int32" />
+          <Property Name="CustomIntegrationId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkLog">
+          <Key>
+            <PropertyRef Name="WorkLogId" />
+          </Key>
+          <Property Name="WorkLogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WorkLogDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="ItemTypeId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="WorkDone" Type="Single" Nullable="false" />
+          <Property Name="WorkUnitTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WorkLogTypeId" Type="Int32" Nullable="false" />
+          <Property Name="SourceType" Type="Int32" Nullable="false" />
+          <Property Name="SourceId" Type="Int32" Nullable="false" />
+          <Property Name="ReleaseWorkEntryId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="GutsyPuppetEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AuthUserLogins" EntityType="Self.AuthUserLogin" />
+          <EntitySet Name="AuthUsers" EntityType="Self.AuthUser" />
+          <EntitySet Name="AuthUserSettings" EntityType="Self.AuthUserSetting" />
+          <EntitySet Name="OnTimeItems" EntityType="Self.OnTimeItem" />
+          <EntitySet Name="TeamUsers" EntityType="Self.TeamUser" />
+          <EntitySet Name="TimeUnitTypes" EntityType="Self.TimeUnitType" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserSecurityRoles" EntityType="Self.UserSecurityRole" />
+          <EntitySet Name="UserTokens" EntityType="Self.UserToken" />
+          <EntitySet Name="WorkflowSteps" EntityType="Self.WorkflowStep" />
+          <EntitySet Name="WorkLogs" EntityType="Self.WorkLog" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GutsyPuppetModelStoreContainer" CdmEntityContainer="GutsyPuppetEntities">
+          <EntitySetMapping Name="AuthUserLogins">
+            <EntityTypeMapping TypeName="GutsyPuppetModel.AuthUserLogin">
+              <MappingFragment StoreEntitySet="AuthUserLogins">
+                <ScalarProperty Name="AuthUserLoginId" ColumnName="AuthUserLoginId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClientType" ColumnName="ClientType" />
+                <ScalarProperty Name="LoginDateTime" ColumnName="LoginDateTime" />
+                <ScalarProperty Name="LoginId" ColumnName="LoginId" />
+                <ScalarProperty Name="LoginResult" ColumnName="LoginResult" />
+                <ScalarProperty Name="AdditionalInfo" ColumnName="AdditionalInfo" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AuthUsers">
+            <EntityTypeMapping TypeName="GutsyPuppetModel.AuthUser">
+              <MappingFragment StoreEntitySet="AuthUsers">
+                <ScalarProperty Name="AuthUserId" ColumnName="AuthUserId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AuthUserSettings">
+            <EntityTypeMapping TypeName="GutsyPuppetModel.AuthUserSetting">
+              <MappingFragment StoreEntitySet="AuthUserSettings">
+                <ScalarProperty Name="AuthUserId" ColumnName="AuthUserId" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="AuthUserSettingsJson" ColumnName="AuthUserSettingsJson" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OnTimeItems">
+            <EntityTypeMapping TypeName="GutsyPuppetModel.OnTimeItem">
+              <MappingFragment StoreEntitySet="OnTimeItems">
+                <ScalarProperty Name="OnTimeItemId" ColumnName="OnTimeItemId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+                <ScalarProperty Name="ReportedById" ColumnName="ReportedById" />
+                <ScalarProperty Name="AssignedToId" ColumnName="AssignedToId" />
+                <ScalarProperty Name="PriorityTypeId" ColumnName="PriorityTypeId" />
+                <ScalarProperty Name="StatusTypeId" ColumnName="StatusTypeId" />
+                <ScalarProperty Name="SeverityTypeId" ColumnName="SeverityTypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="BuildNumber" ColumnName="BuildNumber" />
+                <ScalarProperty Name="EstimatedDuration" ColumnName="EstimatedDuration" />
+                <ScalarProperty Name="DurationUnitTypeId" ColumnName="DurationUnitTypeId" />
+                <ScalarProperty Name="ActualDuration" ColumnName="ActualDuration" />
+                <ScalarProperty Name="ActualUnitTypeId" ColumnName="ActualUnitTypeId" />
+                <ScalarProperty Name="ReportedDate" ColumnName="ReportedDate" />
+                <ScalarProperty Name="CompletionDate" ColumnName="CompletionDate" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="BuildNumberOfFix" ColumnName="BuildNumberOfFix" />
+                <ScalarProperty Name="ReplicationProcedures" ColumnName="ReplicationProcedures" />
+                <ScalarProperty Name="Resolution" ColumnName="Resolution" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="WorkflowStepId" ColumnName="WorkflowStepId" />
+                <ScalarProperty Name="PercentComplete" ColumnName="PercentComplete" />
+                <ScalarProperty Name="LastUpdatedById" ColumnName="LastUpdatedById" />
+                <ScalarProperty Name="LastUpdatedDateTime" ColumnName="LastUpdatedDateTime" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="PubliclyViewable" ColumnName="PubliclyViewable" />
+                <ScalarProperty Name="ReportedByCustomerContactId" ColumnName="ReportedByCustomerContactId" />
+                <ScalarProperty Name="Archived" ColumnName="Archived" />
+                <ScalarProperty Name="RemainingDuration" ColumnName="RemainingDuration" />
+                <ScalarProperty Name="RemainingUnitTypeId" ColumnName="RemainingUnitTypeId" />
+                <ScalarProperty Name="ReleaseId" ColumnName="ReleaseId" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="SubitemType" ColumnName="SubitemType" />
+                <ScalarProperty Name="AggregateEstimatedMinutes" ColumnName="AggregateEstimatedMinutes" />
+                <ScalarProperty Name="AggregateActualMinutes" ColumnName="AggregateActualMinutes" />
+                <ScalarProperty Name="AggregateRemainingMinutes" ColumnName="AggregateRemainingMinutes" />
+                <ScalarProperty Name="EstimatedDurationMinutes" ColumnName="EstimatedDurationMinutes" />
+                <ScalarProperty Name="ActualDurationMinutes" ColumnName="ActualDurationMinutes" />
+                <ScalarProperty Name="RemainingDurationMinutes" ColumnName="RemainingDurationMinutes" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="ItemNumber" ColumnName="ItemNumber" />
+                <ScalarProperty Name="ItemType" ColumnName="ItemType" />
+                <ScalarProperty Name="CategoryTypeId" ColumnName="CategoryTypeId" />
+                <ScalarProperty Name="EscalationLevelId" ColumnName="EscalationLevelId" />
+                <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
+                <ScalarProperty Name="IsPublic" ColumnName="IsPublic" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="FamilyId" ColumnName="FamilyId" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+                <ScalarProperty Name="UniqueFamilyId" ColumnName="UniqueFamilyId" />
+                <ScalarProperty Name="UniqueParentId" ColumnName="UniqueParentId" />
+                <ScalarProperty Name="CreatedByEmailAddress" ColumnName="CreatedByEmailAddress" />
+                <ScalarProperty Name="AssignedToType" ColumnName="AssignedToType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeamUsers">
+            <EntityTypeMapping TypeName="GutsyPuppetModel.TeamUser">
+              <MappingFragment StoreEntitySet="TeamUsers">
+                <ScalarProperty Name="TeamUserId" ColumnName="TeamUserId" />
+                <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TimeUnitTypes">
+            <EntityTypeMapping TypeName="GutsyPuppetModel.TimeUnitType">
+              <MappingFragment StoreEntitySet="TimeUnitTypes">
+                <ScalarProperty Name="TimeUnitTypeId" ColumnName="TimeUnitTypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Abbreviation" ColumnName="Abbreviation" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="ConversionFactor" ColumnName="ConversionFactor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="GutsyPuppetModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LoginId" ColumnName="LoginId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="WindowsId" ColumnName="WindowsId" />
+                <ScalarProperty Name="UseWindowsAuth" ColumnName="UseWindowsAuth" />
+                <ScalarProperty Name="BuiltInAccount" ColumnName="BuiltInAccount" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="LastLoginDateTime" ColumnName="LastLoginDateTime" />
+                <ScalarProperty Name="ReadMessages" ColumnName="ReadMessages" />
+                <ScalarProperty Name="NewSettingsXml" ColumnName="NewSettingsXml" />
+                <ScalarProperty Name="IsLocked" ColumnName="IsLocked" />
+                <ScalarProperty Name="FailedLogins" ColumnName="FailedLogins" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="HashData" ColumnName="HashData" />
+                <ScalarProperty Name="UserImage" ColumnName="UserImage" />
+                <ScalarProperty Name="UseGravatar" ColumnName="UseGravatar" />
+                <ScalarProperty Name="EmailSignature" ColumnName="EmailSignature" />
+                <ScalarProperty Name="CultureInfo" ColumnName="CultureInfo" />
+                <ScalarProperty Name="LastUpdatedDateTime" ColumnName="LastUpdatedDateTime" />
+                <ScalarProperty Name="HasImage" ColumnName="HasImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserSecurityRoles">
+            <EntityTypeMapping TypeName="GutsyPuppetModel.UserSecurityRole">
+              <MappingFragment StoreEntitySet="UserSecurityRoles">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="SecurityRoleId" ColumnName="SecurityRoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTokens">
+            <EntityTypeMapping TypeName="GutsyPuppetModel.UserToken">
+              <MappingFragment StoreEntitySet="UserTokens">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="OAuthToken" ColumnName="OAuthToken" />
+                <ScalarProperty Name="RefreshToken" ColumnName="RefreshToken" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Scope" ColumnName="Scope" />
+                <ScalarProperty Name="RedirectUri" ColumnName="RedirectUri" />
+                <ScalarProperty Name="AuthorizationCode" ColumnName="AuthorizationCode" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="UserTokenId" ColumnName="UserTokenId" />
+                <ScalarProperty Name="ExpirationDateTime" ColumnName="ExpirationDateTime" />
+                <ScalarProperty Name="Provider" ColumnName="Provider" />
+                <ScalarProperty Name="OAuthSecret" ColumnName="OAuthSecret" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkflowSteps">
+            <EntityTypeMapping TypeName="GutsyPuppetModel.WorkflowStep">
+              <MappingFragment StoreEntitySet="WorkflowSteps">
+                <ScalarProperty Name="WorkflowStepId" ColumnName="WorkflowStepId" />
+                <ScalarProperty Name="WorkflowId" ColumnName="WorkflowId" />
+                <ScalarProperty Name="StepOrder" ColumnName="StepOrder" />
+                <ScalarProperty Name="StepName" ColumnName="StepName" />
+                <ScalarProperty Name="EditFieldTemplateId" ColumnName="EditFieldTemplateId" />
+                <ScalarProperty Name="RequireEdit" ColumnName="RequireEdit" />
+                <ScalarProperty Name="ArchiveItem" ColumnName="ArchiveItem" />
+                <ScalarProperty Name="SuppressNotifications" ColumnName="SuppressNotifications" />
+                <ScalarProperty Name="UpdateTimeEstimate" ColumnName="UpdateTimeEstimate" />
+                <ScalarProperty Name="PromptWorkLogEntry" ColumnName="PromptWorkLogEntry" />
+                <ScalarProperty Name="RequireWorkLogEntry" ColumnName="RequireWorkLogEntry" />
+                <ScalarProperty Name="NewEmailWorkflowStepId" ColumnName="NewEmailWorkflowStepId" />
+                <ScalarProperty Name="DefaultColor" ColumnName="DefaultColor" />
+                <ScalarProperty Name="UnarchiveItem" ColumnName="UnarchiveItem" />
+                <ScalarProperty Name="SourceControlCommitWorkflowStepId" ColumnName="SourceControlCommitWorkflowStepId" />
+                <ScalarProperty Name="Rules" ColumnName="Rules" />
+                <ScalarProperty Name="EnableWIPLimits" ColumnName="EnableWIPLimits" />
+                <ScalarProperty Name="WIPItemsPerStep" ColumnName="WIPItemsPerStep" />
+                <ScalarProperty Name="EnforceWIPLimits" ColumnName="EnforceWIPLimits" />
+                <ScalarProperty Name="EnableWIPLimitsPerUser" ColumnName="EnableWIPLimitsPerUser" />
+                <ScalarProperty Name="EnforceWIPLimitsPerUser" ColumnName="EnforceWIPLimitsPerUser" />
+                <ScalarProperty Name="WIPItemsPerUser" ColumnName="WIPItemsPerUser" />
+                <ScalarProperty Name="ItemCopyItemType" ColumnName="ItemCopyItemType" />
+                <ScalarProperty Name="CustomIntegrationId" ColumnName="CustomIntegrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkLogs">
+            <EntityTypeMapping TypeName="GutsyPuppetModel.WorkLog">
+              <MappingFragment StoreEntitySet="WorkLog">
+                <ScalarProperty Name="WorkLogId" ColumnName="WorkLogId" />
+                <ScalarProperty Name="WorkLogDateTime" ColumnName="WorkLogDateTime" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="ItemTypeId" ColumnName="ItemTypeId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="WorkDone" ColumnName="WorkDone" />
+                <ScalarProperty Name="WorkUnitTypeId" ColumnName="WorkUnitTypeId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="WorkLogTypeId" ColumnName="WorkLogTypeId" />
+                <ScalarProperty Name="SourceType" ColumnName="SourceType" />
+                <ScalarProperty Name="SourceId" ColumnName="SourceId" />
+                <ScalarProperty Name="ReleaseWorkEntryId" ColumnName="ReleaseWorkEntryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

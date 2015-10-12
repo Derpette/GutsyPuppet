@@ -1,0 +1,43 @@
+﻿@model GutsyPuppet.Models.TasksViewModel
+
+<div class="userList">
+    <ul class="list-group">
+        @foreach (var user in Model.TaskUsers)
+        {
+            <li class="list-group-item @(user.TooManyHours ? "list-group-item-danger" : "list-group-item-success")">@user.Name</li>
+        }
+    </ul>
+</div>
+
+<div class="taskView">
+    @foreach (var user in Model.TaskUsers)
+    {
+        <div id="@(user.Name + "taskView")">
+            <div class="page-header">
+                <h1>@user.Name</h1>
+            </div>
+        <div class="tasks">
+            Foreach day
+            <div class="panel panel-default">
+                <div class="panel-heading">Date</div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Project</th>
+                        <th>StartDate</th>
+                        <th>PM</th>
+                        <th>Remaining</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+    }
+</div>
