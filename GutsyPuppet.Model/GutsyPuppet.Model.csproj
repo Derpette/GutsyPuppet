@@ -81,12 +81,16 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EFRepositories\ContextRepository.cs" />
+    <Compile Include="Repositories\EFRepositories\TaskRepository.cs" />
     <Compile Include="Repositories\EFRepositories\TeamRepository.cs" />
     <Compile Include="Repositories\EFRepositories\UserRepository.cs" />
+    <Compile Include="Repositories\EFRepositories\WorkflowStepRepository.cs" />
     <Compile Include="Repositories\EFRepositories\WorklogRepository.cs" />
     <Compile Include="Repositories\Interfaces\IContextRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ITaskRepository.cs" />
     <Compile Include="Repositories\Interfaces\ITeamRepository.cs" />
     <Compile Include="Repositories\Interfaces\IUserRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IWorkflowStepRepository.cs" />
     <Compile Include="Repositories\Interfaces\IWorklogRepository.cs" />
     <Compile Include="TeamUser.cs">
       <DependentUpon>GutsyPuppetModel.tt</DependentUpon>

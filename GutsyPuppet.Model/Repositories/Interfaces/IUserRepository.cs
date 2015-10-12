@@ -6,6 +6,7 @@ namespace GutsyPuppet.Model.Repositories.Interfaces
     {
 
         IQueryable<User> GetUsersForTeam(int teamId);
+        IQueryable<User> GetAllActiveUsers();
 
     }
 }

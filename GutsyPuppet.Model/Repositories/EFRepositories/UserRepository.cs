@@ -25,12 +25,21 @@ namespace GutsyPuppet.Model.Repositories.EFRepositories
         {
             if (teamId == -1)
             {
-                return _contextRepository.Context.Users.Where(u => u.IsActive).AsNoTracking();
+                return GetAllActiveUsers();
             }
 
             var userIds = _contextRepository.Context.TeamUsers.Where(tu => tu.TeamId == teamId).Select(tu => tu.UserId);
             return _contextRepository.Context.Users.Where(u => userIds.Contains(u.UserId) && u.IsActive).AsNoTracking();
         }
 
+        /// <summary>
+        /// Gets all users
+        /// Read-only, uses 'no-tracking'
+        /// </summary>
+        /// <returns></returns>
+        public IQueryable<User> GetAllActiveUsers()
+        {
+            return _contextRepository.Context.Users.Where(u => u.IsActive).AsNoTracking();
+        }
     }
 }

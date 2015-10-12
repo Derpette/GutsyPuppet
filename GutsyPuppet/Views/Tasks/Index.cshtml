@@ -1,39 +1,45 @@
 ﻿@model GutsyPuppet.Models.TasksViewModel
 
 <div class="userList">
-    <ul class="list-group">
+    <div class="list-group">
         @foreach (var user in Model.TaskUsers)
         {
-            <li class="list-group-item @(user.TooManyHours ? "list-group-item-danger" : "list-group-item-success")">@user.Name</li>
+            <button type="button" onclick="showUser('@user.Name.Replace(" ", "")'); return false;" class="list-group-item @(user.TooManyHours ? "list-group-item-danger" : (user.NoHours ? "list-group-item-warning": "list-group-item-success"))">@user.Name<span class="badge">@user.TotalHoursRemaining.ToString("N")</span></button>
         }
-    </ul>
+    </div>
 </div>
 
-<div class="taskView">
+<div class="taskViews">
     @foreach (var user in Model.TaskUsers)
     {
-        <div id="@(user.Name + "taskView")">
+        <div class="taskView" id="@(user.Name.Replace(" ", "") + "taskView")" style="display: none;">
             <div class="page-header">
                 <h1>@user.Name</h1>
             </div>
         <div class="tasks">
-            Foreach day
-            <div class="panel panel-default">
-                <div class="panel-heading">Date</div>
+            <div class="panel panel-default@(user.TooManyHours ? " panel-danger" : "")">
+                <div class="panel-heading">@Model.Date.ToString("dd-MM-yyyy")<span class="badge" style="float: right;">@user.TotalHoursRemaining.ToString("N")</span></div>
                 <table class="table">
                     <thead>
                     <tr>
                         <th>Title</th>
-                        <th>Project</th>
                         <th>StartDate</th>
+                        <th>Workflowstep</th>
                         <th>PM</th>
                         <th>Remaining</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td></td>
-                    </tr>
+                    @foreach (var task in user.Tasks)
+                    {
+                        <tr class="@(task.IsWrong ? "danger" : (task.IsWarning ? "warning" : ""))">
+                            <td>@task.Title</td>
+                            <td class="@(task.StartDate < DateTime.UtcNow.Date ? "danger" : "")">@task.StartDate.ToString("dd-MM-yyyy")</td>
+                            <td>@task.WorkflowStep</td>
+                            <td>@task.ReportedBy</td>
+                            <td>@task.RemainingHours.ToString("N")</td>
+                        </tr>
+                    }
                     </tbody>
                 </table>
             </div>

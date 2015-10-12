@@ -8,6 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/app")
 </head>
 <body>
     @{ Html.RenderAction("Index", "Menu"); }
@@ -55,15 +56,16 @@
 
         if (currentSelections.teamId === 0 || currentSelections.viewId === 0) return;
 
-        debugger;
         switch (currentSelections.viewId) {
             case TASK_VIEW_ID:
-
+                var url = "@Url.Action("Index", "Tasks", new {teamid="myTeamId"})".replace("myTeamId", currentSelections.teamId);
+                $.get(url, function (data) {
+                    $(".body-content").html(data);
+                });
                 break;
             case WORKLOG_VIEW_ID:
                 var url = "@Url.Action("Index", "Worklogs", new {teamid="myTeamId"})".replace("myTeamId", currentSelections.teamId);
                 $.get(url, function (data) {
-                    debugger;
                     $(".body-content").html(data);
                 });
                 break;

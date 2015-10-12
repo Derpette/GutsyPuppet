@@ -22,3 +22,13 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.userList {
+    float: left;
+    width: 20em;
+}
+
+.taskViews {
+    float: right;
+    width: 60em;
+}

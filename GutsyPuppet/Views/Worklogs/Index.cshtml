@@ -10,7 +10,7 @@
         @foreach (var worklogUser in Model.WorklogUsers)
         {
             <li class="list-group-item @(worklogUser.EnoughHoursLogged ? "list-group-item-success" : "list-group-item-danger")">
-                <span class="badge">@worklogUser.LoggedHours.ToString("0.00")</span>
+                <span class="badge">@worklogUser.LoggedHours.ToString("N")</span>
                 @worklogUser.Name
             </li>
         }
